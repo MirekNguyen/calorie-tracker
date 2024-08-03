@@ -8,9 +8,11 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
+import { Control } from 'react-hook-form';
+import { MealFormData } from '@/types/meal/mealSchema';
 
 type Props = {
-  control: Control<FieldValues>;
+  control: Control<MealFormData>;
 };
 
 export const AmountFormField: FC<Props> = ({ control }) => {
