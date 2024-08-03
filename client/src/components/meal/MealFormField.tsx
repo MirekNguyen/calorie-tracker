@@ -1,14 +1,13 @@
-import { FC } from "react";
-import { Control, FieldValues } from "react-hook-form";
+import { FC } from 'react';
+import { Control, FieldValues } from 'react-hook-form';
 import {
   FormControl,
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
-} from "../ui/form";
-import { ComboboxDemo } from "./MealSelect";
+} from '../ui/form';
+import { ComboboxDemo } from './MealSelect';
 
 type Props = {
   control: Control<FieldValues>;
@@ -20,7 +19,6 @@ export const MealFormField: FC<Props> = ({ control }) => {
       name="meal"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Username</FormLabel>
           <FormControl>
             <ComboboxDemo field={field} />
           </FormControl>
