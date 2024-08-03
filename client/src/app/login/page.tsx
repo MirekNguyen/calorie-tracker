@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useForm } from "react-hook-form";
 
@@ -11,8 +11,7 @@ export default function Login() {
         <input type="text" />
         <input type="email" />
         <input type="password" />
-        <input type={"submit"}
-          style={{ backgroundColor: "#a1eafb" }} />
+        <input type={"submit"} style={{ backgroundColor: "#a1eafb" }} />
       </form>
     </>
   );

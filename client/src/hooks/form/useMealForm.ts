@@ -9,5 +9,5 @@ export const useMealForm = () => {
     defaultValues: {
       username: "",
     },
-  })
-}
+  });
+};

@@ -19,4 +19,4 @@ export const frameworks = [
     value: "astro",
     label: "Astro",
   },
-]
+];

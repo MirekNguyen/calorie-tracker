@@ -1,11 +1,18 @@
-import { FC } from "react"
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
-import { ComboboxDemo } from "./MealSelect"
-import { Control, FieldValues } from "react-hook-form"
+import { FC } from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+import { ComboboxDemo } from "./MealSelect";
+import { Control, FieldValues } from "react-hook-form";
 
 type Props = {
-  control: Control<FieldValues>
-}
+  control: Control<FieldValues>;
+};
 export const MealFormField: FC<Props> = ({ control }) => {
   return (
     <FormField
@@ -17,12 +24,10 @@ export const MealFormField: FC<Props> = ({ control }) => {
           <FormControl>
             <ComboboxDemo field={field} />
           </FormControl>
-          <FormDescription>
-            This is your public display name.
-          </FormDescription>
+          <FormDescription>This is your public display name.</FormDescription>
           <FormMessage />
         </FormItem>
       )}
     />
-  )
-}
+  );
+};

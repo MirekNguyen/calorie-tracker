@@ -7,5 +7,4 @@ export const mealSchema = z.object({
   meal: z.string().min(2, {
     message: "Meal must be at least 2 characters.",
   }),
-})
-
+});
