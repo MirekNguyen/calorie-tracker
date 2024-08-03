@@ -8,3 +8,5 @@ export const mealSchema = z.object({
     message: "Meal amount must be a positive number.",
   })
 });
+
+export type MealFormData = z.infer<typeof mealSchema>;
