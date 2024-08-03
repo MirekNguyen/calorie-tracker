@@ -8,9 +8,10 @@ import {
   FormMessage,
 } from '../ui/form';
 import { ComboboxDemo } from './MealSelect';
+import { MealFormData } from '@/types/meal/mealSchema';
 
 type Props = {
-  control: Control<FieldValues>;
+  control: Control<MealFormData>;
 };
 export const MealFormField: FC<Props> = ({ control }) => {
   return (
