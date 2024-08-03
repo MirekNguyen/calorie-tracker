@@ -1,13 +1,6 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "prettier",
-    "import"
-  ],
-  "rules": {
-    "import/no-unresolved": "error",
-    "import/named": "error",
-    "import/default": "error",
-    "import/namespace": "error"
-  }
+    "prettier"
+  ]
 }
