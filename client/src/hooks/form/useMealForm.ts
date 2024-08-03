@@ -7,7 +7,8 @@ export const useMealForm = () => {
   return useForm<z.infer<typeof mealSchema>>({
     resolver: zodResolver(mealSchema),
     defaultValues: {
-      username: "",
+      amount: 1,
+      meal: "",
     },
   });
 };

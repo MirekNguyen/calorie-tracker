@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Command,
   CommandEmpty,
@@ -10,24 +10,25 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from '@/components/ui/command';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { FC, useState } from "react";
-import { ControllerRenderProps, FieldValues } from "react-hook-form";
-import { frameworks } from "./mealSelectValues";
+} from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
+import { MealFormData } from '@/types/meal/mealSchema';
+import { FC, useState } from 'react';
+import { ControllerRenderProps } from 'react-hook-form';
+import { frameworks } from './mealSelectValues';
 
 type Props = {
-  field: ControllerRenderProps<FieldValues, string>;
+  field: ControllerRenderProps<MealFormData>;
 };
 
 export const ComboboxDemo: FC<Props> = ({ field }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -40,7 +41,7 @@ export const ComboboxDemo: FC<Props> = ({ field }) => {
         >
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select meal..."}
+            : 'Select meal...'}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -55,17 +56,17 @@ export const ComboboxDemo: FC<Props> = ({ field }) => {
                   key={framework.value}
                   value={framework.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    setValue(currentValue === value ? '' : currentValue);
                     field.onChange(
-                      currentValue === field.value ? "" : currentValue,
+                      currentValue === field.value ? '' : currentValue,
                     );
                     setOpen(false);
                   }}
                 >
                   <Check
                     className={cn(
-                      "mr-2 h-4 w-4",
-                      value === framework.value ? "opacity-100" : "opacity-0",
+                      'mr-2 h-4 w-4',
+                      value === framework.value ? 'opacity-100' : 'opacity-0',
                     )}
                   />
                   {framework.label}
