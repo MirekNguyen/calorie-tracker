@@ -1,4 +1,6 @@
+import { MealFormData } from '@/types/meal/mealSchema';
 import { FC } from 'react';
+import { Control } from 'react-hook-form';
 import {
   FormControl,
   FormDescription,
@@ -8,8 +10,6 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
-import { Control } from 'react-hook-form';
-import { MealFormData } from '@/types/meal/mealSchema';
 
 type Props = {
   control: Control<MealFormData>;
@@ -24,12 +24,7 @@ export const AmountFormField: FC<Props> = ({ control }) => {
         <FormItem>
           <FormLabel>Amount</FormLabel>
           <FormControl>
-            <Input
-              type="number"
-              placeholder="Amount"
-              defaultValue={1}
-              {...field}
-            />
+            <Input type="number" placeholder="Amount" {...field} />
           </FormControl>
           <FormDescription>This is the amount of food you ate</FormDescription>
           <FormMessage />

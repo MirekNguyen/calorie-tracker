@@ -1,7 +1,9 @@
 'use client';
-import { AmountFormField } from '@/components/meal/AmountFormField';
-import { MealFormField } from '@/components/meal/MealFormField';
-import { Button } from '@/components/ui/button';
+import { useMealForm } from '@/hooks/form/useMealForm';
+import { MealFormData } from '@/types/meal/mealSchema';
+import React from 'react';
+import { Form } from 'react-hook-form';
+import { Button } from '../ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,13 +11,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
-import { useMealForm } from '@/hooks/form/useMealForm';
-import { MealFormData } from '@/types/meal/mealSchema';
-import React from 'react';
+} from '@components/ui/dialog';
+import { AmountFormField } from './AmountFormField';
+import { MealFormField } from './MealFormField';
 
-export default function Home() {
+export const MealDialog = () => {
   const form = useMealForm();
   const { control, handleSubmit } = form;
   const [open, setOpen] = React.useState(false);
@@ -24,12 +24,12 @@ export default function Home() {
     console.log(values);
     setOpen(false);
   };
-
   return (
     <>
       <Button variant="outline" onClick={() => setOpen(true)}>
         Edit Profile
       </Button>
+
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -39,7 +39,7 @@ export default function Home() {
             </DialogDescription>
           </DialogHeader>
           <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+            <form className="space-y-8">
               <MealFormField control={control} />
               <AmountFormField control={control} />
               <DialogFooter>
@@ -51,4 +51,4 @@ export default function Home() {
       </Dialog>
     </>
   );
-}
+};
