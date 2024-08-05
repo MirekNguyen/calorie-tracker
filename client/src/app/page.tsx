@@ -19,9 +19,20 @@ import { useMealEntryQuery } from '@/hooks/query/useMealEntryQuery';
 import { useMealQuery } from '@/hooks/query/useMealQuery';
 import { MealFormData } from '@/types/meal/mealSchema';
 import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    const jwt = Cookies.get('jwt');
+    if (!jwt || (jwtDecode(jwt)?.exp ?? 0) < Date.now() / 1000) {
+      router.push('/login');
+    }
+  }, [router])
+
   const form = useMealForm();
   const { control, handleSubmit } = form;
   const [open, setOpen] = useState(false);
