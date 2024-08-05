@@ -24,7 +24,12 @@ export const AmountFormField: FC<Props> = ({ control }) => {
         <FormItem>
           <FormLabel>Amount</FormLabel>
           <FormControl>
-            <Input type="number" placeholder="Amount" {...field} />
+            <Input
+              type="number"
+              placeholder="Amount"
+              {...field}
+              onChange={(e) => field.onChange(Number(e.target.value))}
+            />
           </FormControl>
           <FormDescription>This is the amount of food you ate</FormDescription>
           <FormMessage />

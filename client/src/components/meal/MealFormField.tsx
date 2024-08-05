@@ -17,7 +17,7 @@ export const MealFormField: FC<Props> = ({ control }) => {
   return (
     <FormField
       control={control}
-      name="meal"
+      name="mealId"
       render={({ field }) => (
         <FormItem>
           <FormControl>
