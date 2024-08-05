@@ -1,0 +1,24 @@
+volumes:
+  calorie-tracker-data:
+
+services:
+  calorie-tracker-client:
+    build: ./client
+    container_name: calorie-tracker-client
+    restart: unless-stopped
+
+  calorie-tracker-server:
+    build: ./server
+    container_name: calorie-tracker-server
+    restart: unless-stopped
+
+  calorie-tracker-db:
+    image: postgres:16.1
+    container_name: calorie-tracker-db
+    environment:
+      - POSTGRES_DB=calorie
+      - POSTGRES_USER=calorie
+      - POSTGRES_PASSWORD=calorie
+    volumes:
+      - calorie-tracker-data:/var/lib/postgresql/data
+    restart: unless-stopped
