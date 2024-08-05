@@ -8,7 +8,6 @@ export const useMealForm = () => {
     resolver: zodResolver(mealSchema),
     defaultValues: {
       amount: 1,
-      meal: "",
     },
   });
 };
