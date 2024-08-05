@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
 import { MealEntryService } from './meal-entry.service';
-import { CreateMealEntryDto } from './dto/meal-entry.dto';
+import { CreateCustomMealEntryDto } from './dto/meal-entry-custom.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { CreateMealEntryDto } from './dto/meal-entry.dto';
 
 @Controller('meal-entry')
 export class MealEntryController {
@@ -20,8 +21,17 @@ export class MealEntryController {
     return this.mealEntryService.createMealEntry(mealEntry);
   }
 
+  @Post('custom')
+  @UseGuards(AuthGuard)
+  createCustomMealEntry(
+    @Body() mealEntry: CreateCustomMealEntryDto,
+  ) {
+    return this.mealEntryService.createCustomMealEntry(mealEntry);
+  }
+
   @Delete(':id')
   deleteMealEntry(@Param('id', ParseIntPipe) id: number) {
+    console.log('Deleting meal with id: ', id);
     return this.mealEntryService.deleteMealEntry(id);
   }
 }

@@ -2,23 +2,11 @@ import { IsDate, IsNumber, IsPositive } from 'class-validator';
 export class CreateMealEntryDto {
   @IsNumber()
   @IsPositive()
-  proteins: number;
-
-  @IsNumber()
-  @IsPositive()
-  calories: number;
-
-  @IsNumber()
-  @IsPositive()
-  carbs: number;
-
-  @IsNumber()
-  @IsPositive()
-  fats: number;
-
-  @IsNumber()
-  @IsPositive()
   amount: number;
+
+  @IsNumber()
+  @IsPositive()
+  mealId: number;
 
   @IsDate()
   date: Date;
