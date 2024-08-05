@@ -1,9 +1,9 @@
-'use client';
-import { useMealForm } from '@/hooks/form/useMealForm';
-import { MealFormData } from '@/types/meal/mealSchema';
-import React from 'react';
-import { Form } from 'react-hook-form';
-import { Button } from '../ui/button';
+"use client";
+import { useMealForm } from "@/hooks/form/useMealForm";
+import { MealFormData } from "@/types/meal/mealSchema";
+import React from "react";
+import { Form } from "react-hook-form";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,9 +11,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@components/ui/dialog';
-import { AmountFormField } from './AmountFormField';
-import { MealFormField } from './MealFormField';
+} from "../ui/dialog";
+import { AmountFormField } from "./AmountFormField";
+import { MealFormField } from "./MealFormField";
 
 export const MealDialog = () => {
   const form = useMealForm();

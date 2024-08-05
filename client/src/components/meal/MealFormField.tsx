@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import { Control } from 'react-hook-form';
+import { MealFormData } from "@/types/meal/mealSchema";
+import { FC } from "react";
+import { Control } from "react-hook-form";
 import {
   FormControl,
   FormDescription,
   FormField,
   FormItem,
   FormMessage,
-} from '../ui/form';
-import { ComboboxDemo } from './MealSelect';
-import { MealFormData } from '@/types/meal/mealSchema';
+} from "../ui/form";
+import { ComboboxDemo } from "./MealSelect";
 
 type Props = {
   control: Control<MealFormData>;

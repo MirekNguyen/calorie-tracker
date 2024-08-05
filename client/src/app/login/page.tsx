@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { submitLogin } from '@/actions/login';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { DialogFooter } from '@/components/ui/dialog';
+import { submitLogin } from "@/actions/login";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { DialogFooter } from "@/components/ui/dialog";
 import {
   FormControl,
   FormDescription,
   FormField,
   FormItem,
   FormLabel,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { useLoginForm } from '@/hooks/form/useLoginForm';
-import { LoginData } from '@/types/login/loginSchema';
-import { useRouter } from 'next/navigation';
-import { FormProvider } from 'react-hook-form';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useLoginForm } from "@/hooks/form/useLoginForm";
+import { LoginData } from "@/types/login/loginSchema";
+import { useRouter } from "next/navigation";
+import { FormProvider } from "react-hook-form";
 
 export default function Login() {
   const form = useLoginForm();
@@ -23,7 +23,7 @@ export default function Login() {
   const router = useRouter();
   const onSubmit = (data: LoginData) => {
     submitLogin(data);
-    router.push('/');
+    router.push("/");
   };
 
   return (

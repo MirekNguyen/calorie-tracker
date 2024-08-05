@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Label } from '../ui/label';
+import { FC } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Label } from "../ui/label";
 
 type Props = {
   title: string;

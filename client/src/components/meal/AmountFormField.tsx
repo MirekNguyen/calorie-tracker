@@ -1,6 +1,6 @@
-import { MealFormData } from '@/types/meal/mealSchema';
-import { FC } from 'react';
-import { Control } from 'react-hook-form';
+import { MealFormData } from "@/types/meal/mealSchema";
+import { FC } from "react";
+import { Control } from "react-hook-form";
 import {
   FormControl,
   FormDescription,
@@ -8,8 +8,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
+} from "../ui/form";
+import { Input } from "../ui/input";
 
 type Props = {
   control: Control<MealFormData>;

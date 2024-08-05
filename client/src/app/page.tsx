@@ -1,10 +1,10 @@
-'use client';
-import { submitMealEntry } from '@/actions/meal-entry';
-import { SummaryCard } from '@/components/common/SummaryCard';
-import { AmountFormField } from '@/components/meal/AmountFormField';
-import { MealEntryTable } from '@/components/meal/MealEntryTable';
-import { MealFormField } from '@/components/meal/MealFormField';
-import { Button } from '@/components/ui/button';
+"use client";
+import { submitMealEntry } from "@/actions/meal-entry";
+import { SummaryCard } from "@/components/common/SummaryCard";
+import { AmountFormField } from "@/components/meal/AmountFormField";
+import { MealEntryTable } from "@/components/meal/MealEntryTable";
+import { MealFormField } from "@/components/meal/MealFormField";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,26 +12,26 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Form } from '@/components/ui/form';
-import { useMealForm } from '@/hooks/form/useMealForm';
-import { useMealEntryQuery } from '@/hooks/query/useMealEntryQuery';
-import { useMealQuery } from '@/hooks/query/useMealQuery';
-import { MealFormData } from '@/types/meal/mealSchema';
-import { useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
+} from "@/components/ui/dialog";
+import { Form } from "@/components/ui/form";
+import { useMealForm } from "@/hooks/form/useMealForm";
+import { useMealEntryQuery } from "@/hooks/query/useMealEntryQuery";
+import { useMealQuery } from "@/hooks/query/useMealQuery";
+import { MealFormData } from "@/types/meal/mealSchema";
+import { useQueryClient } from "@tanstack/react-query";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    const jwt = Cookies.get('jwt');
+    const jwt = Cookies.get("jwt");
     if (!jwt || (jwtDecode(jwt)?.exp ?? 0) < Date.now() / 1000) {
-      router.push('/login');
+      router.push("/login");
     }
-  }, [router])
+  }, [router]);
 
   const form = useMealForm();
   const { control, handleSubmit } = form;
@@ -41,7 +41,7 @@ export default function Home() {
 
   const onSubmit = async ({ mealId, amount }: MealFormData) => {
     const response = submitMealEntry(mealId, amount);
-    queryClient.invalidateQueries({ queryKey: ['meal-entry'] });
+    queryClient.invalidateQueries({ queryKey: ["meal-entry"] });
     setOpen(false);
     return response;
   };
@@ -54,7 +54,7 @@ export default function Home() {
         summary={
           (
             mealEntries?.reduce((acc, { calories }) => acc + calories, 0) ?? 0
-          ).toString() + ' /2200 kcal'
+          ).toString() + " /2200 kcal"
         }
       />
       <SummaryCard

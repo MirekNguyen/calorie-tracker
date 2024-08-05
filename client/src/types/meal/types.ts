@@ -15,4 +15,4 @@ export type MealEntry = {
   proteins: number;
   mealId?: number | undefined;
   date: string;
-}
+};
