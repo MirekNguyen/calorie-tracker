@@ -40,9 +40,11 @@ export default function Home() {
     <>
       <SummaryCard
         title="Calories"
-        summary={(
-          mealEntries?.reduce((acc, { calories }) => acc + calories, 0) ?? 0
-        ).toString() + ' /2200 kcal'}
+        summary={
+          (
+            mealEntries?.reduce((acc, { calories }) => acc + calories, 0) ?? 0
+          ).toString() + ' /2200 kcal'
+        }
       />
       <SummaryCard
         title="Proteins"
