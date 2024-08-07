@@ -7,7 +7,7 @@ export const mealSchema = z.object({
   mealId: z.number().int().min(1, {
     message: "MealId must be a positive number.",
   }),
-  amount: z.number().positive().min(1, {
+  amount: z.number().positive().min(0, {
     message: "Meal amount must be a positive number.",
   }),
 });
