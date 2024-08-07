@@ -1,6 +1,5 @@
-import { FC } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Label } from "../ui/label";
+import { FC } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 type Props = {
   title: string;
@@ -9,12 +8,14 @@ type Props = {
 
 export const SummaryCard: FC<Props> = ({ title, summary }) => {
   return (
-    <Card className="w-[350px]">
+    <Card>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <Label>{summary}</Label>
+        <div className="flex justify-between items-center">
+          <p className="text-2xl font-bold">{summary}</p>
+        </div>
       </CardContent>
     </Card>
   );
