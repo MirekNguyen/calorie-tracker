@@ -5,9 +5,6 @@ import { baseApi } from "./api";
 
 export const submitLogin = async ({ username, password }: LoginData) => {
   const response = await baseApi.post("auth/sign-in", { username, password });
-  const token = response.data;
-  Cookies.set("jwt", token, { expires: 7 });
-
   return response;
 };
 
