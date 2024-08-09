@@ -4,8 +4,15 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
+  //app.use(cors({
+  //  origin: '*', // Replace with your frontend URL
+  //  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  //  credentials: true,
+  //  allowedHeaders: 'Content-Type, Authorization',
+  //}));
+  //
   app.setGlobalPrefix('api');
-  app.enableCors({ origin: '*' });
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, // false by default, removes unspecified params
     transform: true, // enable partial DTO
