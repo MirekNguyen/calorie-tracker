@@ -11,20 +11,18 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { MealEntryForm } from './MealEntryForm';
 import { MealEntryCustomForm } from './MealEntryCustomForm';
-
-type Props = {
-  open: boolean;
-  toggleOpen: () => void;
-};
+import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
 
 const TabsValue = {
   Account: 'account',
   Custom: 'custom',
 };
 
-export const MealEntryDialog: FC<Props> = ({ open, toggleOpen }) => {
+export const MealEntryDialog: FC = () => {
+  const { isOpen, openDialog, closeDialog } = useDialogStore();
+
   return (
-    <Dialog open={open} onOpenChange={toggleOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => (open ? openDialog() : closeDialog())}>
       <DialogContent className="sm:max-w-[425px]">
         <Tabs defaultValue={TabsValue.Account}>
           <TabsList className="grid w-full grid-cols-2">
@@ -38,7 +36,7 @@ export const MealEntryDialog: FC<Props> = ({ open, toggleOpen }) => {
                 Make changes to your profile here. Click save when you are done.
               </DialogDescription>
             </DialogHeader>
-            <MealEntryForm toggleOpen={toggleOpen} className="space-y-8">
+            <MealEntryForm className="space-y-8">
               <DialogFooter>
                 <Button type="submit">Save changes</Button>
               </DialogFooter>
@@ -51,7 +49,7 @@ export const MealEntryDialog: FC<Props> = ({ open, toggleOpen }) => {
                 Create your custom meal entry here. Click save when you are
                 done.
               </DialogDescription>
-            <MealEntryCustomForm toggleOpen={toggleOpen}>
+            <MealEntryCustomForm>
               <DialogFooter>
                 <Button type="submit">Save changes</Button>
               </DialogFooter>

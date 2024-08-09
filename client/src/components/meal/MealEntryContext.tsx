@@ -1,21 +1,13 @@
 import { FC } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 import { MealEntryDialog } from './MealEntryDialog';
 import { MealEntryDrawer } from './MealEntryDrawer';
 
-type Props = {
-  isDesktop: boolean;
-  open: boolean;
-  toggleOpen: () => void;
-};
-
-export const MealEntryContext: FC<Props> = ({
-  isDesktop,
-  open,
-  toggleOpen,
-}) => {
+export const MealEntryContext: FC = () => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   if (isDesktop) {
-    return <MealEntryDialog open={open} toggleOpen={toggleOpen} />;
+    return <MealEntryDialog />;
   } else {
-    return <MealEntryDrawer open={open} toggleOpen={toggleOpen} />;
+    return <MealEntryDrawer />;
   }
 };

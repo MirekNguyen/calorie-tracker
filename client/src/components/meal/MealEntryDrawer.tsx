@@ -1,3 +1,4 @@
+import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
 import { FC } from 'react';
 import { Button } from '../ui/button';
 import {
@@ -11,14 +12,12 @@ import {
 } from '../ui/drawer';
 import { MealEntryForm } from './MealEntryForm';
 
-type Props = {
-  open: boolean;
-  toggleOpen: () => void;
-};
+export const MealEntryDrawer: FC = () => {
+  const { isOpen, openDialog, closeDialog } = useDialogStore();
+  const onOpenChange = (open: boolean) => (open ? openDialog() : closeDialog());
 
-export const MealEntryDrawer: FC<Props> = ({ open, toggleOpen }) => {
   return (
-    <Drawer open={open} onOpenChange={toggleOpen}>
+    <Drawer open={isOpen} onOpenChange={onOpenChange}>
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DrawerTitle>Add entry</DrawerTitle>
@@ -26,10 +25,7 @@ export const MealEntryDrawer: FC<Props> = ({ open, toggleOpen }) => {
             Make changes to your profile here. Click save when you are done.
           </DrawerDescription>
         </DrawerHeader>
-        <MealEntryForm
-          toggleOpen={toggleOpen}
-          className="space-y-8 grid items-start gap-4 px-4"
-        >
+        <MealEntryForm className="space-y-8 grid items-start gap-4 px-4">
           <Button type="submit">Save changes</Button>
         </MealEntryForm>
         <DrawerFooter className="pt-2">

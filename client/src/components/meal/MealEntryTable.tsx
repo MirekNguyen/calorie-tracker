@@ -13,18 +13,18 @@ import {
   TableHeader,
   TableRow,
 } from '../ui/table';
+import { useMediaQuery } from 'usehooks-ts';
 
 type Props = {
   mealEntries: MealEntry[] | undefined;
   meals: Meal[] | undefined;
-  isDesktop: boolean;
 };
 
 export const MealEntryTable: FC<Props> = ({
   mealEntries,
   meals,
-  isDesktop,
 }) => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const queryClient = useQueryClient();
   const handleDelete = async (id: number) => {
     const response = await api.delete(`meal-entry/${id}`);

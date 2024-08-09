@@ -5,28 +5,27 @@ import { useQueryClient } from '@tanstack/react-query';
 import { FC, ReactNode } from 'react';
 import { FormProvider } from 'react-hook-form';
 import { NutrientFormField } from './NutrientFormField';
+import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
 
 type Props = {
-  toggleOpen: () => void;
   className?: string;
   children?: ReactNode;
 };
 
 export const MealEntryCustomForm: FC<Props> = ({
-  toggleOpen,
   className,
   children,
 }) => {
   const form = useCustomMealEntryForm();
   const { control, handleSubmit } = form;
+  const { closeDialog } = useDialogStore();
+
 
   const queryClient = useQueryClient();
   const onSubmit = async (customMealEntry: CustomMealEntry) => {
-    console.log(customMealEntry);
     const response = await submitCustomMealEntry(customMealEntry);
-    console.log(response);
     queryClient.invalidateQueries({ queryKey: ['meal-entry'] });
-    toggleOpen();
+    closeDialog();
     return response;
   };
   return (
