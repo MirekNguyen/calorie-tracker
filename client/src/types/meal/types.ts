@@ -14,5 +14,6 @@ export type MealEntry = {
   fats: number;
   proteins: number;
   mealId?: number | undefined;
+  amount: number;
   date: string;
 };
