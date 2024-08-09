@@ -10,6 +10,7 @@ import {
 } from '../ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { MealEntryForm } from './MealEntryForm';
+import { MealEntryCustomForm } from './MealEntryCustomForm';
 
 type Props = {
   open: boolean;
@@ -50,6 +51,11 @@ export const MealEntryDialog: FC<Props> = ({ open, toggleOpen }) => {
                 Create your custom meal entry here. Click save when you are
                 done.
               </DialogDescription>
+            <MealEntryCustomForm toggleOpen={toggleOpen}>
+              <DialogFooter>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </MealEntryCustomForm>
             </DialogHeader>
           </TabsContent>
         </Tabs>

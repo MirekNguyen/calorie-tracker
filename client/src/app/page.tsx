@@ -23,7 +23,10 @@ export default function Home() {
   }, [router]);
 
   const [open, setOpen] = useState(false);
-  const toggleOpen = () => setOpen(!open);
+  const toggleOpen = () => {
+    setOpen(!open);
+    console.log(open);
+  };
 
   const { data: mealEntries } = useMealEntryQuery();
   const { data: meals } = useMealQuery();
