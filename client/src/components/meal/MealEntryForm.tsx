@@ -6,23 +6,24 @@ import { MealFormField } from './MealFormField';
 import { MealFormData } from '@/types/meal/mealSchema';
 import { submitMealEntry } from '@/actions/meal-entry';
 import { useQueryClient } from '@tanstack/react-query';
+import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
 
 type Props = {
   children: ReactNode;
-  toggleOpen: () => void;
   className?: string;
 };
 
-export const MealEntryForm: FC<Props> = ({ children, toggleOpen, className }) => {
+export const MealEntryForm: FC<Props> = ({ children, className }) => {
   const form = useMealForm();
   const { control, handleSubmit } = form;
+  const { closeDialog } = useDialogStore();
 
   const queryClient = useQueryClient();
   const onSubmit = async ({ mealId, amount }: MealFormData) => {
     const response = submitMealEntry(mealId, amount).then(() => {
       queryClient.invalidateQueries({ queryKey: ['meal-entry'] });
+      closeDialog();
     });
-    toggleOpen();
     return response;
   };
   return (
