@@ -1,7 +1,4 @@
-import { useMealForm } from '@/hooks/form/useMealForm';
-import { MealFormData } from '@/types/meal/mealSchema';
 import { FC } from 'react';
-import { FormProvider } from 'react-hook-form';
 import { Button } from '../ui/button';
 import {
   Dialog,
@@ -11,36 +8,51 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog';
-import { AmountFormField } from './AmountFormField';
-import { MealFormField } from './MealFormField';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { MealEntryForm } from './MealEntryForm';
 
 type Props = {
-  onSubmit: ({ mealId, amount }: MealFormData) => Promise<void>;
   open: boolean;
   toggleOpen: () => void;
 };
 
-export const MealEntryDialog: FC<Props> = ({ onSubmit, open, toggleOpen }) => {
-  const form = useMealForm();
-  const { control, handleSubmit } = form;
+const TabsValue = {
+  Account: 'account',
+  Custom: 'custom',
+};
+
+export const MealEntryDialog: FC<Props> = ({ open, toggleOpen }) => {
   return (
     <Dialog open={open} onOpenChange={toggleOpen}>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Add entry</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you are done.
-          </DialogDescription>
-        </DialogHeader>
-        <FormProvider {...form}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            <MealFormField control={control} />
-            <AmountFormField control={control} />
-            <DialogFooter>
-              <Button type="submit">Save changes</Button>
-            </DialogFooter>
-          </form>
-        </FormProvider>
+        <Tabs defaultValue={TabsValue.Account}>
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value={TabsValue.Account}>Meal entry</TabsTrigger>
+            <TabsTrigger value={TabsValue.Custom}>Custom</TabsTrigger>
+          </TabsList>
+          <TabsContent value={TabsValue.Account}>
+            <DialogHeader>
+              <DialogTitle>Add entry</DialogTitle>
+              <DialogDescription>
+                Make changes to your profile here. Click save when you are done.
+              </DialogDescription>
+            </DialogHeader>
+            <MealEntryForm toggleOpen={toggleOpen} className="space-y-8">
+              <DialogFooter>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </MealEntryForm>
+          </TabsContent>
+          <TabsContent value={TabsValue.Custom}>
+            <DialogHeader>
+              <DialogTitle>Custom entry</DialogTitle>
+              <DialogDescription>
+                Create your custom meal entry here. Click save when you are
+                done.
+              </DialogDescription>
+            </DialogHeader>
+          </TabsContent>
+        </Tabs>
       </DialogContent>
     </Dialog>
   );

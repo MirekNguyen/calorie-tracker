@@ -12,20 +12,9 @@ type Props = {
 };
 
 export const MealEntryContext: FC<Props> = ({ isDesktop, open, toggleOpen }) => {
-
-  const queryClient = useQueryClient();
-  const onSubmit = async ({ mealId, amount }: MealFormData) => {
-    const response = submitMealEntry(mealId, amount).then(() => {
-      queryClient.invalidateQueries({ queryKey: ['meal-entry'] });
-    });
-    toggleOpen();
-    return response;
-  };
-
   if (isDesktop) {
     return (
       <MealEntryDialog
-        onSubmit={onSubmit}
         open={open}
         toggleOpen={toggleOpen}
       />
@@ -33,7 +22,6 @@ export const MealEntryContext: FC<Props> = ({ isDesktop, open, toggleOpen }) => 
   } else {
     return (
       <MealEntryDrawer
-        onSubmit={onSubmit}
         open={open}
         toggleOpen={toggleOpen}
       />
