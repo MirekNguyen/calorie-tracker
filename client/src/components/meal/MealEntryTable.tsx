@@ -45,7 +45,6 @@ export const MealEntryTable: FC<Props> = ({
             <>
               <TableHead>Carbs</TableHead>
               <TableHead>Fats</TableHead>
-              <TableHead>Date</TableHead>
             </>
           )}
           <TableHead>Action</TableHead>
@@ -53,7 +52,7 @@ export const MealEntryTable: FC<Props> = ({
       </TableHeader>
       <TableBody>
         {mealEntries?.map(
-          ({ proteins, date, id, fats, carbs, mealId, calories, amount }) => {
+          ({ proteins, id, fats, carbs, mealId, calories, amount }) => {
             const name =
               meals?.find((meal) => meal.id === mealId)?.name || 'Custom entry';
             return (
@@ -67,7 +66,6 @@ export const MealEntryTable: FC<Props> = ({
                   <>
                     <TableCell>{carbs} g</TableCell>
                     <TableCell>{fats} g</TableCell>
-                    <TableCell>{date} g</TableCell>
                   </>
                 )}
                 <TableCell>
