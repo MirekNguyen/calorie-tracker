@@ -1,8 +1,9 @@
-import { api } from "@/actions/api";
-import { Meal, MealEntry } from "@/types/meal/types";
-import { useQueryClient } from "@tanstack/react-query";
-import { FC } from "react";
-import { Button } from "../ui/button";
+'use client';
+import { api } from '@/actions/api';
+import { Meal, MealEntry } from '@/types/meal/types';
+import { useQueryClient } from '@tanstack/react-query';
+import { FC } from 'react';
+import { Button } from '../ui/button';
 import {
   Table,
   TableBody,
@@ -11,18 +12,23 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from '../ui/table';
 
 type Props = {
   mealEntries: MealEntry[] | undefined;
   meals: Meal[] | undefined;
+  isDesktop: boolean;
 };
 
-export const MealEntryTable: FC<Props> = ({ mealEntries, meals }) => {
+export const MealEntryTable: FC<Props> = ({
+  mealEntries,
+  meals,
+  isDesktop,
+}) => {
   const queryClient = useQueryClient();
   const handleDelete = async (id: number) => {
     const response = await api.delete(`meal-entry/${id}`);
-    queryClient.invalidateQueries({ queryKey: ["meal-entry"] });
+    queryClient.invalidateQueries({ queryKey: ['meal-entry'] });
     return response;
   };
   return (
@@ -30,29 +36,40 @@ export const MealEntryTable: FC<Props> = ({ mealEntries, meals }) => {
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead>Id</TableHead>
+          {isDesktop && <TableHead>Id</TableHead>}
           <TableHead>Name</TableHead>
+          <TableHead>Amount</TableHead>
           <TableHead>Calories</TableHead>
           <TableHead>Proteins</TableHead>
-          <TableHead>Carbs</TableHead>
-          <TableHead>Fats</TableHead>
-          <TableHead>Date</TableHead>
+          {isDesktop && (
+            <>
+              <TableHead>Carbs</TableHead>
+              <TableHead>Fats</TableHead>
+              <TableHead>Date</TableHead>
+            </>
+          )}
+          <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {mealEntries?.map(
-          ({ proteins, date, id, fats, carbs, mealId, calories }) => {
+          ({ proteins, date, id, fats, carbs, mealId, calories, amount }) => {
             const name =
-              meals?.find((meal) => meal.id === mealId)?.name || "Custom entry";
+              meals?.find((meal) => meal.id === mealId)?.name || 'Custom entry';
             return (
               <TableRow key={id}>
-                <TableCell>{id}</TableCell>
+                {isDesktop && <TableCell>{id}</TableCell>}
                 <TableCell>{name}</TableCell>
-                <TableCell>{calories}</TableCell>
-                <TableCell>{proteins}</TableCell>
-                <TableCell>{carbs}</TableCell>
-                <TableCell>{fats}</TableCell>
-                <TableCell>{date}</TableCell>
+                <TableCell>{amount}</TableCell>
+                <TableCell>{calories} kcal</TableCell>
+                <TableCell>{proteins} g</TableCell>
+                {isDesktop && (
+                  <>
+                    <TableCell>{carbs} g</TableCell>
+                    <TableCell>{fats} g</TableCell>
+                    <TableCell>{date} g</TableCell>
+                  </>
+                )}
                 <TableCell>
                   <Button variant="outline" onClick={() => handleDelete(id)}>
                     Delete
