@@ -1,7 +1,7 @@
-'use client';
-import { FC } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { MealEntry } from '@/types/meal/types';
+"use client";
+import { MealEntry } from "@/types/meal/types";
+import { FC } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 type Props = {
   mealEntries: MealEntry[] | undefined;
@@ -20,8 +20,8 @@ export const CaloriesCard: FC<Props> = ({ mealEntries }) => {
             <p className="text-2xl font-bold">
               {Math.round(
                 mealEntries?.reduce((acc, { calories }) => acc + calories, 0) ??
-                0,
-              ).toString() + ' kcal'}
+                  0,
+              ).toString() + " kcal"}
             </p>
           </div>
         </div>

@@ -1,12 +1,12 @@
-import { useMealForm } from '@/hooks/form/useMealForm';
-import { FC, ReactNode } from 'react';
-import { FormProvider } from 'react-hook-form';
-import { AmountFormField } from './AmountFormField';
-import { MealFormField } from './MealFormField';
-import { MealFormData } from '@/types/meal/mealSchema';
-import { submitMealEntry } from '@/actions/meal-entry';
-import { useQueryClient } from '@tanstack/react-query';
-import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
+import { submitMealEntry } from "@/actions/meal-entry";
+import { useMealForm } from "@/hooks/form/useMealForm";
+import { useDialogStore } from "@/hooks/zustand/meal-entry/useDialogStore";
+import { MealFormData } from "@/types/meal/mealSchema";
+import { useQueryClient } from "@tanstack/react-query";
+import { FC, ReactNode } from "react";
+import { FormProvider } from "react-hook-form";
+import { AmountFormField } from "./AmountFormField";
+import { MealFormField } from "./MealFormField";
 
 type Props = {
   children: ReactNode;
@@ -21,7 +21,7 @@ export const MealEntryForm: FC<Props> = ({ children, className }) => {
   const queryClient = useQueryClient();
   const onSubmit = async ({ mealId, amount }: MealFormData) => {
     const response = submitMealEntry(mealId, amount).then(() => {
-      queryClient.invalidateQueries({ queryKey: ['meal-entry'] });
+      queryClient.invalidateQueries({ queryKey: ["meal-entry"] });
       closeDialog();
     });
     return response;

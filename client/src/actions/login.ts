@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { LoginData } from "@/types/login/loginSchema";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";

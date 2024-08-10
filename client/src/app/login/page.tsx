@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import { submitLogin } from '@/actions/login';
-import { Button } from '@/components/ui/button';
+import { submitLogin } from "@/actions/login";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { DialogFooter } from '@/components/ui/dialog';
+} from "@/components/ui/card";
+import { DialogFooter } from "@/components/ui/dialog";
 import {
   FormControl,
   FormDescription,
   FormField,
   FormItem,
   FormLabel,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { useLoginForm } from '@/hooks/form/useLoginForm';
-import { LoginData } from '@/types/login/loginSchema';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
-import { FormProvider } from 'react-hook-form';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useLoginForm } from "@/hooks/form/useLoginForm";
+import { LoginData } from "@/types/login/loginSchema";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { FormProvider } from "react-hook-form";
 
 const setCookie = (
   name: string,
@@ -42,8 +42,8 @@ export default function Login() {
   const onSubmit = (data: LoginData) => {
     submitLogin(data).then((response) => {
       const token = response.data;
-      setCookie('jwt', token, { expires: 7, sameSite: 'strict' }).then(() => {
-        router.push('/');
+      setCookie("jwt", token, { expires: 7, sameSite: "strict" }).then(() => {
+        router.push("/");
       });
     });
   };

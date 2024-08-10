@@ -1,9 +1,10 @@
-'use client';
-import { api } from '@/actions/api';
-import { Meal, MealEntry } from '@/types/meal/types';
-import { useQueryClient } from '@tanstack/react-query';
-import { FC } from 'react';
-import { Button } from '../ui/button';
+"use client";
+import { api } from "@/actions/api";
+import { Meal, MealEntry } from "@/types/meal/types";
+import { useQueryClient } from "@tanstack/react-query";
+import { FC } from "react";
+import { useMediaQuery } from "usehooks-ts";
+import { Button } from "../ui/button";
 import {
   Table,
   TableBody,
@@ -12,23 +13,19 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../ui/table';
-import { useMediaQuery } from 'usehooks-ts';
+} from "../ui/table";
 
 type Props = {
   mealEntries: MealEntry[] | undefined;
   meals: Meal[] | undefined;
 };
 
-export const MealEntryTable: FC<Props> = ({
-  mealEntries,
-  meals,
-}) => {
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+export const MealEntryTable: FC<Props> = ({ mealEntries, meals }) => {
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const queryClient = useQueryClient();
   const handleDelete = async (id: number) => {
     const response = await api.delete(`meal-entry/${id}`);
-    queryClient.invalidateQueries({ queryKey: ['meal-entry'] });
+    queryClient.invalidateQueries({ queryKey: ["meal-entry"] });
     return response;
   };
   return (
@@ -54,7 +51,7 @@ export const MealEntryTable: FC<Props> = ({
         {mealEntries?.map(
           ({ proteins, id, fats, carbs, mealId, calories, amount }) => {
             const name =
-              meals?.find((meal) => meal.id === mealId)?.name || 'Custom entry';
+              meals?.find((meal) => meal.id === mealId)?.name || "Custom entry";
             return (
               <TableRow key={id}>
                 {isDesktop && <TableCell>{id}</TableCell>}

@@ -1,6 +1,9 @@
-import { customMealEntry, CustomMealEntry } from "@/types/meal/customMealEntrySchema"
+import {
+  customMealEntry,
+  CustomMealEntry,
+} from "@/types/meal/customMealEntrySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 export const useCustomMealEntryForm = () => {
   return useForm<CustomMealEntry>({
@@ -11,6 +14,6 @@ export const useCustomMealEntryForm = () => {
       carbs: 0,
       fats: 0,
       amount: 1,
-    }
+    },
   });
-}
+};
