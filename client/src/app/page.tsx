@@ -1,24 +1,24 @@
-'use client';
-import { CaloriesCard } from '@/components/common/CaloriesCard';
-import { NutrientsCard } from '@/components/common/NutrientsCard';
-import { MealEntryContext } from '@/components/meal/MealEntryContext';
-import { MealEntryTable } from '@/components/meal/MealEntryTable';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useMealEntryQuery } from '@/hooks/query/useMealEntryQuery';
-import { useMealQuery } from '@/hooks/query/useMealQuery';
-import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
-import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+"use client";
+import { CaloriesCard } from "@/components/common/CaloriesCard";
+import { NutrientsCard } from "@/components/common/NutrientsCard";
+import { MealEntryContext } from "@/components/meal/MealEntryContext";
+import { MealEntryTable } from "@/components/meal/MealEntryTable";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useMealEntryQuery } from "@/hooks/query/useMealEntryQuery";
+import { useMealQuery } from "@/hooks/query/useMealQuery";
+import { useDialogStore } from "@/hooks/zustand/meal-entry/useDialogStore";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    const jwt = Cookies.get('jwt');
+    const jwt = Cookies.get("jwt");
     if (!jwt || (jwtDecode(jwt)?.exp ?? 0) < Date.now() / 1000) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [router]);
 

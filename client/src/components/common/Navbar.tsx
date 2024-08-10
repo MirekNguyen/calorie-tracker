@@ -1,5 +1,5 @@
-'use client';
-import { FC } from 'react';
+"use client";
+import { FC } from "react";
 
 export const Navbar: FC = () => {
   return (

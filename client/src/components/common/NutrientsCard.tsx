@@ -1,7 +1,7 @@
-'use client';
-import { MealEntry } from '@/types/meal/types';
-import { FC } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+"use client";
+import { MealEntry } from "@/types/meal/types";
+import { FC } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 type Props = {
   mealEntries: MealEntry[] | undefined;
@@ -20,8 +20,8 @@ export const NutrientsCard: FC<Props> = ({ mealEntries }) => {
             <p>
               {Math.round(
                 mealEntries?.reduce((acc, { proteins }) => acc + proteins, 0) ??
-                0,
-              ).toString() + ' g'}
+                  0,
+              ).toString() + " g"}
             </p>
           </div>
           <div className="text-m flex justify-between">
@@ -29,7 +29,7 @@ export const NutrientsCard: FC<Props> = ({ mealEntries }) => {
             <p>
               {Math.round(
                 mealEntries?.reduce((acc, { carbs }) => acc + carbs, 0) ?? 0,
-              ).toString() + ' g'}
+              ).toString() + " g"}
             </p>
           </div>
           <div className="text-m flex justify-between">
@@ -37,7 +37,7 @@ export const NutrientsCard: FC<Props> = ({ mealEntries }) => {
             <p>
               {Math.round(
                 mealEntries?.reduce((acc, { fats }) => acc + fats, 0) ?? 0,
-              ).toString() + ' g'}
+              ).toString() + " g"}
             </p>
           </div>
         </div>
