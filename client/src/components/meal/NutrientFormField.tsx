@@ -31,7 +31,7 @@ export const NutrientFormField: FC<Props> = ({ control, name, label }) => {
               type="number"
               placeholder={label}
               {...field}
-              onChange={(e) => field.onChange(Number(e.target.value))}
+              onChange={(e) => field.onChange(e.target.valueAsNumber)}
             />
           </FormControl>
           <FormDescription>{`This is the amount ${name} of food you ate`}</FormDescription>
