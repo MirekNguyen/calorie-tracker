@@ -29,7 +29,7 @@ export const AmountFormField: FC<Props> = ({ control }) => {
               type="number"
               placeholder="Amount"
               {...field}
-              onChange={(e) => field.onChange(Number(e.target.value))}
+              onChange={(e) => field.onChange(e.target.valueAsNumber)}
             />
           </FormControl>
           <FormDescription>This is the amount of food you ate</FormDescription>

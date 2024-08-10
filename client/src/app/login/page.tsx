@@ -20,31 +20,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { useLoginForm } from "@/hooks/form/useLoginForm";
 import { LoginData } from "@/types/login/loginSchema";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 import { FormProvider } from "react-hook-form";
-
-const setCookie = (
-  name: string,
-  value: string,
-  options?: Cookies.CookieAttributes,
-): Promise<void> => {
-  return new Promise((resolve) => {
-    Cookies.set(name, value, options);
-    resolve();
-  });
-};
 
 export default function Login() {
   const form = useLoginForm();
   const { control, handleSubmit } = form;
+  const [, setCookie] = useCookies(['jwt']);
   const router = useRouter();
   const onSubmit = (data: LoginData) => {
-    submitLogin(data).then((response) => {
-      const token = response.data;
-      setCookie("jwt", token, { expires: 7, sameSite: "strict" }).then(() => {
-        router.push("/");
-      });
+    submitLogin(data).then(({data: token}) => {
+      setCookie('jwt', token, { path: '/', maxAge: 3600 });
+      router.push('/');
     });
   };
 
