@@ -6,6 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { FC, ReactNode } from "react";
 import { FormProvider } from "react-hook-form";
 import { NutrientFormField } from "./NutrientFormField";
+import { useApi } from "@/actions/api";
 
 type Props = {
   className?: string;
@@ -18,8 +19,9 @@ export const MealEntryCustomForm: FC<Props> = ({ className, children }) => {
   const { closeDialog } = useDialogStore();
 
   const queryClient = useQueryClient();
+  const api = useApi();
   const onSubmit = async (customMealEntry: CustomMealEntry) => {
-    const response = await submitCustomMealEntry(customMealEntry);
+    const response = await submitCustomMealEntry(api, customMealEntry);
     queryClient.invalidateQueries({ queryKey: ["meal-entry"] });
     closeDialog();
     return response;

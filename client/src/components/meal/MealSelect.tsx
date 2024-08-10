@@ -56,8 +56,8 @@ export const ComboboxDemo: FC<Props> = ({ field }) => {
                   key={id}
                   value={name}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    field.onChange(currentValue === value ? "" : id);
+                    setValue(currentValue === name ? "" : name);
+                    field.onChange(currentValue === name ? "" : id);
                     setOpen(false);
                   }}
                 >

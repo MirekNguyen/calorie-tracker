@@ -1,16 +1,18 @@
 "use client";
-import { api } from "@/actions/api";
+import { useApi } from "@/actions/api";
 import { MealEntry } from "@/types/meal/types";
 import { useQuery } from "@tanstack/react-query";
+import { AxiosInstance } from "axios";
 
-const fetchMeals = async (): Promise<MealEntry[]> => {
+const fetchMeals = async (api: AxiosInstance): Promise<MealEntry[]> => {
   const { data } = await api.get(`meal-entry?date=${new Date()}`);
   return data;
 };
 export const useMealEntryQuery = () => {
+  const api = useApi();
   const { data, error } = useQuery({
     queryKey: ["meal-entry"],
-    queryFn: fetchMeals,
+    queryFn: () => fetchMeals(api),
   });
   return { data, error };
 };

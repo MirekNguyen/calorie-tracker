@@ -7,6 +7,7 @@ import { FC, ReactNode } from "react";
 import { FormProvider } from "react-hook-form";
 import { AmountFormField } from "./AmountFormField";
 import { MealFormField } from "./MealFormField";
+import { useApi } from "@/actions/api";
 
 type Props = {
   children: ReactNode;
@@ -19,8 +20,9 @@ export const MealEntryForm: FC<Props> = ({ children, className }) => {
   const { closeDialog } = useDialogStore();
 
   const queryClient = useQueryClient();
+  const api = useApi();
   const onSubmit = async ({ mealId, amount }: MealFormData) => {
-    const response = submitMealEntry(mealId, amount).then(() => {
+    const response = submitMealEntry(api, mealId, amount).then(() => {
       queryClient.invalidateQueries({ queryKey: ["meal-entry"] });
       closeDialog();
     });
