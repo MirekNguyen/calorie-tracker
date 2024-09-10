@@ -20,3 +20,24 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Docker metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: mireknguyen/calorie-tracker
+
+      - name: Build and push docker image for server
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          context: ./server
+          file: ./Dockerfile
+          tags: mireknguyen/calorie-tracker-be:latest
+
+      - name: Build and push docker image for client
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          context: ./client
+          file: ./Dockerfile
+          tags: mireknguyen/calorie-tracker-be:latest
