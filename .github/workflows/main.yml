@@ -32,7 +32,7 @@ jobs:
           push: true
           context: .
           file: ./server/Dockerfile
-          tags: mireknguyen/calorie-tracker-be:latest
+          tags: mireknguyen/calorie-tracker-server:latest
 
       - name: Build and push docker image for client
         uses: docker/build-push-action@v6
@@ -40,4 +40,4 @@ jobs:
           push: true
           context: .
           file: ./client/Dockerfile
-          tags: mireknguyen/calorie-tracker-be:latest
+          tags: mireknguyen/calorie-tracker-client:latest
