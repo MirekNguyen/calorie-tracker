@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          context: .
+          context: ./server
           file: ./server/Dockerfile
           tags: mireknguyen/calorie-tracker-server:latest
 
@@ -38,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          context: .
+          context: ./client
           file: ./client/Dockerfile
           tags: mireknguyen/calorie-tracker-client:latest
