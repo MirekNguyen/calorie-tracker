@@ -1,5 +1,11 @@
 {
+  "name": "calorie-tracker",
 	"devDependencies": {
 		"turbo": "^2.1.2"
-	}
+	},
+	"scripts": {
+	  "dev": "turbo dev start:dev --parallel",
+	  "lint": "turbo lint"
+	},
+  "packageManager": "pnpm@8.15.6"
 }
