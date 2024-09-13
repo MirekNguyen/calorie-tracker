@@ -1,8 +1,8 @@
 #!/bin/bash
 HOST=localhost
-POSTGRES_DB=database
-POSTGRES_USER=user
-POSTGRES_PASSWORD=password
+POSTGRES_DB=calorie
+POSTGRES_USER=calorie
+POSTGRES_PASSWORD=calorie
 POSTGRES_PORT=5444
 set -ex
 
