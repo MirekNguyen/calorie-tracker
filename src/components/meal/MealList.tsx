@@ -38,9 +38,9 @@ export const MealList: FC<Props> = ({
             <CommandItem
               key={id}
               value={name}
-              onSelect={(currentValue) => {
-                setValue(currentValue === name ? '' : name);
-                field.onChange(currentValue === name ? '' : id);
+              onSelect={() => {
+                setValue(name);
+                field.onChange(id);
                 setOpen(false);
               }}
             >
