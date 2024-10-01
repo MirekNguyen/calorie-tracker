@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosInstance } from "axios";
 
 const fetchMeals = async (api: AxiosInstance): Promise<MealEntry[]> => {
-  const { data } = await api.get(`meal-entry?date=${new Date()}`);
+  const { data } = await api.get(`meal-entry?date=${new Date().toISOString()}`);
   return data;
 };
 export const useMealEntryQuery = () => {
