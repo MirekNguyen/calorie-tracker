@@ -1,4 +1,3 @@
-import { Check } from 'lucide-react';
 import {
   Command,
   CommandEmpty,
@@ -6,12 +5,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command';
-import { cn } from '@/lib/utils';
-import { MealFormData } from '@/types/meal/mealSchema';
-import { Meal } from '@/types/meal/types';
-import { FC } from 'react';
-import { ControllerRenderProps } from 'react-hook-form';
+} from "@/components/ui/command";
+import { cn } from "@/lib/utils";
+import { MealFormData } from "@/types/meal/mealSchema";
+import { Meal } from "@/types/meal/types";
+import { Check } from "lucide-react";
+import { FC } from "react";
+import { ControllerRenderProps } from "react-hook-form";
 
 type Props = {
   meals: Meal[] | undefined;
@@ -46,8 +46,8 @@ export const MealList: FC<Props> = ({
             >
               <Check
                 className={cn(
-                  'mr-2 h-4 w-4',
-                  value === name ? 'opacity-100' : 'opacity-0',
+                  "mr-2 h-4 w-4",
+                  value === name ? "opacity-100" : "opacity-0",
                 )}
               />
               {name}

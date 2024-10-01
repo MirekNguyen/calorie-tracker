@@ -3,7 +3,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 
 export const useApi = () => {
-  const [cookies] = useCookies(['jwt']);
+  const [cookies] = useCookies(["jwt"]);
   const jwt = cookies.jwt;
   return axios.create({
     baseURL: `/api`,
@@ -12,7 +12,7 @@ export const useApi = () => {
       Authorization: "Bearer " + jwt,
     },
   });
-}
+};
 
 export const baseApi = axios.create({
   baseURL: `/api`,

@@ -1,7 +1,11 @@
 import { CustomMealEntry } from "@/types/meal/customMealEntrySchema";
 import { AxiosInstance } from "axios";
 
-export const submitMealEntry = async (api: AxiosInstance,mealId: number, amount: number) => {
+export const submitMealEntry = async (
+  api: AxiosInstance,
+  mealId: number,
+  amount: number,
+) => {
   const response = await api.post("meal-entry", {
     mealId,
     amount,
