@@ -1,5 +1,7 @@
 import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import { authOptions } from "../../auth/[...nextauth]/route";
 
 type DynamicParams = {
   params: {
@@ -13,6 +15,11 @@ type ResponseBody = {
 };
 
 export async function DELETE(_req: NextRequest, { params }: DynamicParams): Promise<NextResponse<ResponseBody>> {
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user) {
+    return NextResponse.json(new Error("Unauthorized"), { status: 401 });
+  }
+
   const id = parseInt(params.id);
   const mealEntry = await prisma.mealEntry.findUnique({
     where: { id },
