@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "../../auth/[...nextauth]/authOptions";
 
 type DynamicParams = {
   params: {
@@ -9,12 +9,7 @@ type DynamicParams = {
   };
 };
 
-type ResponseBody = {
-  message: string;
-  status: number;
-};
-
-export async function DELETE(_req: NextRequest, { params }: DynamicParams): Promise<NextResponse<ResponseBody>> {
+export async function DELETE(_req: NextRequest, { params }: DynamicParams) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {
     return NextResponse.json(new Error("Unauthorized"), { status: 401 });
