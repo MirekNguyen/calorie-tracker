@@ -44,5 +44,7 @@ jobs:
         run: pnpx prisma generate
       - name: eslint
         run: pnpm lint
+      - name: format
+        run: pnpm format:check
       - name: build
         run: pnpm build
