@@ -8,19 +8,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useMealEntryQuery } from '@/hooks/query/useMealEntryQuery';
 import { useMealQuery } from '@/hooks/query/useMealQuery';
 import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
-import { jwtDecode } from 'jwt-decode';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  const [{ jwt }] = useCookies(['jwt']);
-  const router = useRouter();
-  useEffect(() => {
-    if (!jwt || (jwtDecode(jwt)?.exp ?? 0) < Date.now() / 1000) {
-      router.push('/login');
-    }
-  }, [router, jwt]);
+  const { data: session } = useSession()
+  if (!session || !session.user) {
+    redirect('/api/auth/signin')
+  }
 
   const { data: mealEntries } = useMealEntryQuery();
   const { data: meals } = useMealQuery();

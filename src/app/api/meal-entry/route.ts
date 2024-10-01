@@ -1,13 +1,20 @@
 import prisma from "@/lib/prisma";
 import { endOfDay, startOfDay } from "date-fns";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 const schema = z.object({
   date: z.string().datetime(),
 });
 
 export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user) {
+    return NextResponse.json(new Error("Unauthorized"), { status: 401 });
+  }
+
   const searchParams = Object.fromEntries(req.nextUrl.searchParams.entries());
   const { data, success, error } = schema.safeParse(searchParams);
   if (!success) {
@@ -33,6 +40,11 @@ const postSchema = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user) {
+    return NextResponse.json(new Error("Unauthorized"), { status: 401 });
+  }
+
   const body = await req.json();
   const { data, success, error } = postSchema.safeParse(body);
   if (!success) {
