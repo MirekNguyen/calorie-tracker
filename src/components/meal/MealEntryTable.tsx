@@ -2,6 +2,7 @@
 import { useApi } from "@/actions/api";
 import { Meal, MealEntry } from "@/types/meal/types";
 import { useQueryClient } from "@tanstack/react-query";
+import { AxiosInstance } from "axios";
 import { FC } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { Button } from "../ui/button";
@@ -14,7 +15,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { AxiosInstance } from "axios";
 
 type Props = {
   mealEntries: MealEntry[] | undefined;
@@ -35,13 +35,13 @@ export const MealEntryTable: FC<Props> = ({ mealEntries, meals }) => {
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className={isDesktop ? '' : 'hidden'}>Id</TableHead>
+          <TableHead className={isDesktop ? "" : "hidden"}>Id</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Amount</TableHead>
           <TableHead>Calories</TableHead>
           <TableHead>Proteins</TableHead>
-          <TableHead className={isDesktop ? '' : 'hidden'}>Carbs</TableHead>
-          <TableHead className={isDesktop ? '' : 'hidden'}>Fats</TableHead>
+          <TableHead className={isDesktop ? "" : "hidden"}>Carbs</TableHead>
+          <TableHead className={isDesktop ? "" : "hidden"}>Fats</TableHead>
           <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
@@ -52,15 +52,24 @@ export const MealEntryTable: FC<Props> = ({ mealEntries, meals }) => {
               meals?.find((meal) => meal.id === mealId)?.name || "Custom entry";
             return (
               <TableRow key={id}>
-                <TableCell className={isDesktop ? '' : 'hidden'}>{id}</TableCell>
+                <TableCell className={isDesktop ? "" : "hidden"}>
+                  {id}
+                </TableCell>
                 <TableCell>{name}</TableCell>
                 <TableCell>{amount}</TableCell>
                 <TableCell>{calories} kcal</TableCell>
                 <TableCell>{proteins} g</TableCell>
-                <TableCell className={isDesktop ? '' : 'hidden'}>{carbs} g</TableCell>
-                <TableCell className={isDesktop ? '' : 'hidden'}>{fats} g</TableCell>
+                <TableCell className={isDesktop ? "" : "hidden"}>
+                  {carbs} g
+                </TableCell>
+                <TableCell className={isDesktop ? "" : "hidden"}>
+                  {fats} g
+                </TableCell>
                 <TableCell>
-                  <Button variant="outline" onClick={() => handleDelete(api, id)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleDelete(api, id)}
+                  >
                     Delete
                   </Button>
                 </TableCell>

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { ChevronsUpDown } from 'lucide-react';
+import { ChevronsUpDown } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { useMealQuery } from '@/hooks/query/useMealQuery';
-import { MealFormData } from '@/types/meal/mealSchema';
-import { FC, useState } from 'react';
-import { ControllerRenderProps } from 'react-hook-form';
-import { useMediaQuery } from 'usehooks-ts';
-import { Drawer, DrawerContent, DrawerTrigger } from '../ui/drawer';
-import { MealList } from './MealList';
+} from "@/components/ui/popover";
+import { useMealQuery } from "@/hooks/query/useMealQuery";
+import { MealFormData } from "@/types/meal/mealSchema";
+import { FC, useState } from "react";
+import { ControllerRenderProps } from "react-hook-form";
+import { useMediaQuery } from "usehooks-ts";
+import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
+import { MealList } from "./MealList";
 
 type Props = {
   field: ControllerRenderProps<MealFormData>;
@@ -22,9 +22,9 @@ type Props = {
 
 export const ComboboxDemo: FC<Props> = ({ field }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const { data: meals } = useMealQuery();
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   if (isDesktop) {
     return (
@@ -36,7 +36,7 @@ export const ComboboxDemo: FC<Props> = ({ field }) => {
             aria-expanded={open}
             className="w-full justify-between"
           >
-            {value ? value : 'Select meal...'}
+            {value ? value : "Select meal..."}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
@@ -61,7 +61,7 @@ export const ComboboxDemo: FC<Props> = ({ field }) => {
             aria-expanded={open}
             className="w-full justify-between"
           >
-            {value ? value : 'Select meal...'}
+            {value ? value : "Select meal..."}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </DrawerTrigger>

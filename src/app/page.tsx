@@ -1,20 +1,20 @@
-'use client';
-import { CaloriesCard } from '@/components/common/CaloriesCard';
-import { NutrientsCard } from '@/components/common/NutrientsCard';
-import { MealEntryContext } from '@/components/meal/MealEntryContext';
-import { MealEntryTable } from '@/components/meal/MealEntryTable';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useMealEntryQuery } from '@/hooks/query/useMealEntryQuery';
-import { useMealQuery } from '@/hooks/query/useMealQuery';
-import { useDialogStore } from '@/hooks/zustand/meal-entry/useDialogStore';
-import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
+"use client";
+import { CaloriesCard } from "@/components/common/CaloriesCard";
+import { NutrientsCard } from "@/components/common/NutrientsCard";
+import { MealEntryContext } from "@/components/meal/MealEntryContext";
+import { MealEntryTable } from "@/components/meal/MealEntryTable";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useMealEntryQuery } from "@/hooks/query/useMealEntryQuery";
+import { useMealQuery } from "@/hooks/query/useMealQuery";
+import { useDialogStore } from "@/hooks/zustand/meal-entry/useDialogStore";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
   if (!session || !session.user) {
-    redirect('/api/auth/signin')
+    redirect("/api/auth/signin");
   }
 
   const { data: mealEntries } = useMealEntryQuery();

@@ -1,3 +1,4 @@
+import { useApi } from "@/actions/api";
 import { submitMealEntry } from "@/actions/meal-entry";
 import { useMealForm } from "@/hooks/form/useMealForm";
 import { useDialogStore } from "@/hooks/zustand/meal-entry/useDialogStore";
@@ -7,7 +8,6 @@ import { FC, ReactNode } from "react";
 import { FormProvider } from "react-hook-form";
 import { AmountFormField } from "./AmountFormField";
 import { MealFormField } from "./MealFormField";
-import { useApi } from "@/actions/api";
 
 type Props = {
   children: ReactNode;

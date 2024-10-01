@@ -24,7 +24,10 @@ export async function DELETE(_req: NextRequest, { params }: DynamicParams) {
   }
   const response = await prisma.mealEntry.delete({ where: { id } });
   if (!response) {
-    return NextResponse.json({ message: "Failed to delete meal entry", status: 500 });
+    return NextResponse.json({
+      message: "Failed to delete meal entry",
+      status: 500,
+    });
   }
   return NextResponse.json(response);
 }

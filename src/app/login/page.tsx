@@ -27,12 +27,12 @@ import { FormProvider } from "react-hook-form";
 export default function Login() {
   const form = useLoginForm();
   const { control, handleSubmit } = form;
-  const [, setCookie] = useCookies(['jwt']);
+  const [, setCookie] = useCookies(["jwt"]);
   const router = useRouter();
   const onSubmit = (data: LoginData) => {
-    submitLogin(data).then(({data: token}) => {
-      setCookie('jwt', token, { path: '/', maxAge: 3600 });
-      router.push('/');
+    submitLogin(data).then(({ data: token }) => {
+      setCookie("jwt", token, { path: "/", maxAge: 3600 });
+      router.push("/");
     });
   };
 
