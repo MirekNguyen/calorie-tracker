@@ -3,7 +3,7 @@ import { endOfDay, startOfDay } from "date-fns";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/authOptions";
 
 const schema = z.object({
   date: z.string().datetime(),
