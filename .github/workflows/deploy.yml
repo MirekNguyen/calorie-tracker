@@ -34,4 +34,5 @@ jobs:
           push: true
           context: .
           file: Dockerfile
-          tags: mireknguyen/calorie-tracker:latest
+          tags: ${{ secrets.DOCKERHUB_REGISTRY }}/${{ secrets.DOCKERHUB_IMAGE }}:latest
+          platforms: linux/amd64,linux/arm64
