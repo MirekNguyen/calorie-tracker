@@ -24,6 +24,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Initialize Prisma
+        run: pnpx prisma generate
       - name: eslint
         run: pnpm lint
       - name: build
