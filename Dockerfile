@@ -8,6 +8,7 @@ COPY ./package*.json .
 RUN npm install --verbose
 COPY . .
 
+RUN npx prisma generate
 RUN npm run build
 
 FROM base as runner

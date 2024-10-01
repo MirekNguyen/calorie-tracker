@@ -2,6 +2,20 @@ volumes:
   calorie-tracker-data:
 
 services:
+  calorie-tracker:
+    build: .
+    container_name: calorie-tracker
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+      - DATABASE_URL=postgresql://calorie:calorie@calorie-tracker-db:5432/calorie?schema=public
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=a48fea08aae787a9764b66ee52efbae3916df60a
+      - GITHUB_ID=Ov23liL0YKed30vNj4DT
+      - GITHUB_SECRET=be3b703b90315808462624a383d3615881682175
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+
   calorie-tracker-db:
     image: postgres:16.1
     container_name: calorie-tracker-db
