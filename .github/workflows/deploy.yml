@@ -32,14 +32,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          context: ./apps/server
-          file: ./apps/server/Dockerfile
-          tags: mireknguyen/calorie-tracker-server:latest
-
-      - name: Build and push docker image for client
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          context: ./apps/client
-          file: ./apps/client/Dockerfile
-          tags: mireknguyen/calorie-tracker-client:latest
+          context: .
+          file: Dockerfile
+          tags: mireknguyen/calorie-tracker:latest

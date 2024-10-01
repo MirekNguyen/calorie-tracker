@@ -6,7 +6,7 @@ export const useApi = () => {
   const [cookies] = useCookies(['jwt']);
   const jwt = cookies.jwt;
   return axios.create({
-    baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
+    baseURL: `/api`,
     withCredentials: false,
     headers: {
       Authorization: "Bearer " + jwt,
@@ -15,6 +15,6 @@ export const useApi = () => {
 }
 
 export const baseApi = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
+  baseURL: `/api`,
   withCredentials: false,
 });
