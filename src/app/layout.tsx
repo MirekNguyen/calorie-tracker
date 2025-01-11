@@ -1,10 +1,11 @@
 import { Navbar } from "@/components/common/Navbar";
 import SessionProvider from "@/components/common/SessionProvider";
 import { ReactQueryClientProvider } from "@/components/query/ReactQueryClientProvider";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,6 +13,11 @@ export const metadata: Metadata = {
   title: "Calorie tracker",
   description: "App to track your health",
 };
+
+export const viewport: Viewport = {
+  userScalable: false,
+  width: "device-width",
+}
 
 export default async function RootLayout({
   children,
