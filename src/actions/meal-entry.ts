@@ -1,4 +1,5 @@
 import { CustomMealEntry } from "@/types/meal/customMealEntrySchema";
+import { Meal } from "@/types/meal/mealSchema";
 import { AxiosInstance } from "axios";
 
 export const submitMealEntry = async (
@@ -24,3 +25,11 @@ export const submitCustomMealEntry = async (
   });
   return response;
 };
+
+export const submitMeal = async (
+api: AxiosInstance,
+meal: Meal
+) => {
+  const response = await api.post("meal", meal);
+  return response;
+}

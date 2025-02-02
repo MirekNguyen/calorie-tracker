@@ -1,13 +1,14 @@
 import { useApi } from "@/actions/api";
 import { submitMealEntry } from "@/actions/meal-entry";
-import { useMealForm } from "@/hooks/form/useMealForm";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useMealEntryForm } from "@/hooks/form/useMealEntryForm";
 import { useDialogStore } from "@/hooks/zustand/meal-entry/useDialogStore";
-import { MealFormData } from "@/types/meal/mealSchema";
+import { MealFormData } from "@/types/meal/mealEntrySchema";
 import { useQueryClient } from "@tanstack/react-query";
 import { FC, ReactNode } from "react";
 import { FormProvider } from "react-hook-form";
-import { AmountFormField } from "./AmountFormField";
-import { MealFormField } from "./MealFormField";
+import { AmountFormField } from "../AmountFormField";
+import { MealEntryFormField } from "./MealEntryFormField";
 
 type Props = {
   children: ReactNode;
@@ -15,7 +16,7 @@ type Props = {
 };
 
 export const MealEntryForm: FC<Props> = ({ children, className }) => {
-  const form = useMealForm();
+  const form = useMealEntryForm();
   const { control, handleSubmit } = form;
   const { closeDialog } = useDialogStore();
 
@@ -30,11 +31,13 @@ export const MealEntryForm: FC<Props> = ({ children, className }) => {
   };
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className={className}>
-        <MealFormField control={control} />
-        <AmountFormField control={control} />
-        {children}
-      </form>
+      <ScrollArea className="h-72">
+        <form onSubmit={handleSubmit(onSubmit)} className={className}>
+          <MealEntryFormField control={control} />
+          <AmountFormField control={control} />
+          {children}
+        </form>
+      </ScrollArea>
     </FormProvider>
   );
 };

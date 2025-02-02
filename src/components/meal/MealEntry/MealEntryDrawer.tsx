@@ -1,6 +1,6 @@
 import { useDialogStore } from "@/hooks/zustand/meal-entry/useDialogStore";
 import { FC } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -9,14 +9,16 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "../ui/drawer";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { MealEntryCustomForm } from "./MealEntryCustomForm";
+} from "../../ui/drawer";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
+import { MealForm } from "../MealForm";
 import { MealEntryForm } from "./MealEntryForm";
+import { MealEntryCustomForm } from "./MealEntryCustomForm";
 
 const TabsValue = {
   Account: "account",
   Custom: "custom",
+  Meal: "meal",
 };
 
 export const MealEntryDrawer: FC = () => {
@@ -28,9 +30,25 @@ export const MealEntryDrawer: FC = () => {
       <DrawerContent>
         <Tabs defaultValue={TabsValue.Account}>
           <DrawerHeader className="text-left">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value={TabsValue.Account}>Meal entry</TabsTrigger>
-              <TabsTrigger value={TabsValue.Custom}>Custom</TabsTrigger>
+            <TabsList className="flex w-full flex-wrap gap-2 sm:flex-nowrap sm:justify-center">
+              <TabsTrigger
+                value={TabsValue.Account}
+                className="flex-1 text-center"
+              >
+                Meal entry
+              </TabsTrigger>
+              <TabsTrigger
+                value={TabsValue.Custom}
+                className="flex-1 text-center"
+              >
+                Custom
+              </TabsTrigger>
+              <TabsTrigger
+                value={TabsValue.Meal}
+                className="flex-1 text-center"
+              >
+                Meal
+              </TabsTrigger>
             </TabsList>
             <DrawerTitle>Add entry</DrawerTitle>
             <DrawerDescription>
@@ -38,7 +56,7 @@ export const MealEntryDrawer: FC = () => {
             </DrawerDescription>
           </DrawerHeader>
           <TabsContent value={TabsValue.Account}>
-            <MealEntryForm className="space-y-8 grid items-start gap-4 px-4">
+            <MealEntryForm className="grid items-start px-4 h-72">
               <Button type="submit">Save changes</Button>
             </MealEntryForm>
             <DrawerFooter className="pt-2">
@@ -48,9 +66,19 @@ export const MealEntryDrawer: FC = () => {
             </DrawerFooter>
           </TabsContent>
           <TabsContent value={TabsValue.Custom}>
-            <MealEntryCustomForm className="grid items-start px-4">
+            <MealEntryCustomForm className="grid items-start px-4 h-72">
               <Button type="submit">Save changes</Button>
             </MealEntryCustomForm>
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </TabsContent>
+          <TabsContent value={TabsValue.Meal}>
+            <MealForm className="grid items-start px-4 h-72">
+              <Button type="submit">Save changes</Button>
+            </MealForm>
             <DrawerFooter className="pt-2">
               <DrawerClose asChild>
                 <Button variant="outline">Cancel</Button>

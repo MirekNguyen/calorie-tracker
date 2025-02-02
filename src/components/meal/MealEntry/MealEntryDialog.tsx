@@ -1,6 +1,6 @@
 import { useDialogStore } from "@/hooks/zustand/meal-entry/useDialogStore";
 import { FC } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,14 +8,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { MealEntryCustomForm } from "./MealEntryCustomForm";
+} from "../../ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import { MealEntryForm } from "./MealEntryForm";
+import { MealEntryCustomForm } from "./MealEntryCustomForm";
+import { MealForm } from "../MealForm";
 
 const TabsValue = {
   Account: "account",
   Custom: "custom",
+  Meal: "meal",
 };
 
 export const MealEntryDialog: FC = () => {
@@ -26,11 +28,16 @@ export const MealEntryDialog: FC = () => {
       open={isOpen}
       onOpenChange={(open) => (open ? openDialog() : closeDialog())}
     >
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent
+        className="sm:max-w-[425px]"
+        aria-describedby="dialog-description"
+        aria-labelledby="dialog-title"
+      >
         <Tabs defaultValue={TabsValue.Account}>
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value={TabsValue.Account}>Meal entry</TabsTrigger>
             <TabsTrigger value={TabsValue.Custom}>Custom</TabsTrigger>
+            <TabsTrigger value={TabsValue.Meal}>Meal</TabsTrigger>
           </TabsList>
           <TabsContent value={TabsValue.Account}>
             <DialogHeader>
@@ -57,6 +64,20 @@ export const MealEntryDialog: FC = () => {
                   <Button type="submit">Save changes</Button>
                 </DialogFooter>
               </MealEntryCustomForm>
+            </DialogHeader>
+          </TabsContent>
+          <TabsContent value={TabsValue.Meal}>
+            <DialogHeader>
+              <DialogTitle>Meal</DialogTitle>
+              <DialogDescription>
+                Create your custom meal entry here. Click save when you are
+                done.
+              </DialogDescription>
+              <MealForm>
+                <DialogFooter>
+                  <Button type="submit">Save changes</Button>
+                </DialogFooter>
+              </MealForm>
             </DialogHeader>
           </TabsContent>
         </Tabs>

@@ -9,12 +9,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useMealQuery } from "@/hooks/query/useMealQuery";
-import { MealFormData } from "@/types/meal/mealSchema";
 import { FC, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
 import { useMediaQuery } from "usehooks-ts";
 import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
 import { MealList } from "./MealList";
+import { MealFormData } from "@/types/meal/mealEntrySchema";
 
 type Props = {
   field: ControllerRenderProps<MealFormData>;

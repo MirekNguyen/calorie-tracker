@@ -1,8 +1,8 @@
 "use client";
 import { CaloriesCard } from "@/components/common/CaloriesCard";
 import { NutrientsCard } from "@/components/common/NutrientsCard";
-import { MealEntryContext } from "@/components/meal/MealEntryContext";
-import { MealEntryTable } from "@/components/meal/MealEntryTable";
+import { MealEntryContext } from "@/components/meal/MealEntry/MealEntryContext";
+import { MealEntryTable } from "@/components/meal/MealEntry/MealEntryTable";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useMealEntryQuery } from "@/hooks/query/useMealEntryQuery";

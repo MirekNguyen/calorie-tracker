@@ -1,5 +1,5 @@
 "use client";
-import { MealFormData } from "@/types/meal/mealSchema";
+import { Meal } from "@/types/meal/mealSchema";
 import { FC } from "react";
 import { Control } from "react-hook-form";
 import {
@@ -7,24 +7,34 @@ import {
   FormDescription,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "../ui/form";
-import { ComboboxDemo } from "./MealSelect";
+import { Input } from "../ui/input";
 
 type Props = {
-  control: Control<MealFormData>;
+  control: Control<Meal>;
+  name: "calories" | "proteins" | "carbs" | "fats";
+  label: string;
 };
-export const MealFormField: FC<Props> = ({ control }) => {
+
+export const MealFormField: FC<Props> = ({ control, name, label }) => {
   return (
     <FormField
       control={control}
-      name="mealId"
+      name={name}
       render={({ field }) => (
         <FormItem>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
-            <ComboboxDemo field={field} />
+            <Input
+              type="number"
+              placeholder={label}
+              {...field}
+              onChange={(e) => field.onChange(e.target.valueAsNumber)}
+            />
           </FormControl>
-          <FormDescription>This is your public display name.</FormDescription>
+          <FormDescription>{`This is the amount ${name} of food you ate`}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

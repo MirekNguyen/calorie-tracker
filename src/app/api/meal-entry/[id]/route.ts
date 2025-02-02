@@ -4,12 +4,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../../auth/[...nextauth]/authOptions";
 
 type DynamicParams = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export async function DELETE(_req: NextRequest, { params }: DynamicParams) {
+export async function DELETE(_req: NextRequest, props: DynamicParams) {
+  const params = await props.params;
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {
     return NextResponse.json(new Error("Unauthorized"), { status: 401 });

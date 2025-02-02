@@ -1,15 +1,19 @@
 import { z } from "zod";
 
 export const mealSchema = z.object({
-  //meal: z.string().min(2, {
-  //  message: "Meal must be at least 2 characters.",
-  //}),
-  mealId: z.number().int().min(1, {
-    message: "MealId must be a positive number.",
+  name: z.string().min(1, { message: "Name must not be empty." }),
+  calories: z.number().nonnegative({
+    message: "Calories must be a negative number.",
   }),
-  amount: z.number().positive().min(0, {
-    message: "Meal amount must be a positive number.",
+  proteins: z.number().nonnegative({
+    message: "Proteins must be a negative number.",
+  }),
+  carbs: z.number().nonnegative({
+    message: "Carbs must be a negative number.",
+  }),
+  fats: z.number().nonnegative({
+    message: "Fats must be a negative number.",
   }),
 });
 
-export type MealFormData = z.infer<typeof mealSchema>;
+export type Meal = z.infer<typeof mealSchema>;

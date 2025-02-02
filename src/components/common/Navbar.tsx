@@ -10,7 +10,7 @@ export const Navbar: FC = () => {
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Calorie Tracker</h1>
         <div className="flex direction-reverse justify-center items-center gap-6">
-          {session && <p>Welcome, {session.user?.name}</p>}
+          {session && <p>{session.user?.name}</p>}
           <AuthButton />
         </div>
       </div>

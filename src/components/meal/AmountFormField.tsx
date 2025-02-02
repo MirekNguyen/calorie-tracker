@@ -1,5 +1,4 @@
 "use client";
-import { MealFormData } from "@/types/meal/mealSchema";
 import { FC } from "react";
 import { Control } from "react-hook-form";
 import {
@@ -11,6 +10,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import { MealFormData } from "@/types/meal/mealEntrySchema";
 
 type Props = {
   control: Control<MealFormData>;

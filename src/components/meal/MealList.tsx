@@ -7,7 +7,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
-import { MealFormData } from "@/types/meal/mealSchema";
+import { MealFormData } from "@/types/meal/mealEntrySchema";
 import { Meal } from "@/types/meal/types";
 import { Check } from "lucide-react";
 import { FC } from "react";

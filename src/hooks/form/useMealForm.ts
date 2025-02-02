@@ -1,13 +1,18 @@
-import { mealSchema } from "@/types/meal/mealSchema";
+import {
+  mealSchema,
+  Meal,
+} from "@/types/meal/mealSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 export const useMealForm = () => {
-  return useForm<z.infer<typeof mealSchema>>({
+  return useForm<Meal>({
     resolver: zodResolver(mealSchema),
     defaultValues: {
-      amount: 1,
+      calories: 0,
+      proteins: 0,
+      carbs: 0,
+      fats: 0,
     },
   });
 };
