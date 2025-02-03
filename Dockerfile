@@ -1,17 +1,17 @@
-FROM node:22.4.0-alpine as base
+FROM node:22.4.0-alpine AS base
 
-FROM base as builder
+FROM base AS builder
 
 WORKDIR /app
 COPY ./package*.json .
 
-RUN npm install --verbose
+RUN npm install --verbose --force
 COPY . .
 
 RUN npx prisma generate
 RUN npm run build
 
-FROM base as runner
+FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
