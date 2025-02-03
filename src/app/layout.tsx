@@ -5,18 +5,19 @@ import { Metadata, Viewport } from "next";
 import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Calorie tracker",
   description: "App to track your health",
+  appleWebApp: true,
 };
 
 export const viewport: Viewport = {
   userScalable: false,
   width: "device-width",
+  viewportFit: "cover",
 }
 
 export default async function RootLayout({
