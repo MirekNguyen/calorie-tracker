@@ -29,7 +29,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <ReactQueryClientProvider>
         <html lang="en">
-          <body className={`${inter.className} overscroll-none`}>
+          <body className={`${inter.className} overscroll-none overflow-hidden touch-none`}>
             <div className="flex flex-col w-full min-h-screen bg-background">
               <Navbar />
               {children}
