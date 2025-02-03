@@ -22,7 +22,7 @@ export default function Home() {
   const { openDialog } = useDialogStore();
 
   return (
-    <main className="flex-1 p-6 space-y-6">
+    <main className="flex-1 p-6 space-y-6 overscroll-none">
       <div className="grid grid-cols-2 gap-6">
         <CaloriesCard mealEntries={mealEntries} />
         <NutrientsCard mealEntries={mealEntries} />
